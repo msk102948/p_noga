@@ -10,13 +10,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Getter
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 public class Ledger  extends BaseEntity {
-    @Column(length = 255)
+    @Column()
     @Comment("내용")
     private String content;
 
@@ -42,5 +43,8 @@ public class Ledger  extends BaseEntity {
     @Comment("사용자")
     private Users users;
 
+    @Column
+    @Comment("기준일자")
+    private Date baseDate;
 
 }
