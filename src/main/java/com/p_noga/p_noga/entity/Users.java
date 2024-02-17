@@ -18,6 +18,10 @@ public class Users extends BaseEntity {
     @Comment("유저가 직접 입력한 Id")
     private String userName;
 
+    @Column(nullable = false)
+    @Comment("비밀번호")
+    private String password;
+
     @Column(length = 100, unique = true, nullable = false)
     @Comment("이메일")
     private String email;
