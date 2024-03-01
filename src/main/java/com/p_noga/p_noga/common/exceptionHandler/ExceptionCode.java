@@ -26,9 +26,8 @@ public enum ExceptionCode {
 
     E10000("id와 일치하는 회원이 없습니다."),
     E10001("등록되지 않은 email 입니다."),
-    E10002("이미 존재하는 email 입니다."),
+    E10002("이미 존재하는 아이디 혹은 email 입니다."),
     E10003("비밀번호가 다릅니다."),
-
     E20000("id와 일치하는 약관이 없습니다."),
     E20001("약관 동의가 필요합니다."),
 
@@ -40,10 +39,6 @@ public enum ExceptionCode {
 
     private final String code;
     private final String message;
-
-    public String getMessage(){
-        return this.message;
-    }
 
     ExceptionCode(String message){
         this.code = this.name();
