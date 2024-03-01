@@ -1,11 +1,14 @@
 package com.p_noga.p_noga.entity;
 
+import com.p_noga.p_noga.dto.request.SignupReq;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Comment;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import java.util.List;
 
 @Getter
@@ -27,6 +30,9 @@ public class Users extends BaseEntity {
     private String email;
 
     @OneToMany
-    @JoinColumn(nullable = false)
     private List<Ledger> ledgers;
+
+    public static Users of(String userName, String password, String email){
+        return new Users(userName,password,email,null);
+    }
 }

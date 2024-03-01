@@ -20,15 +20,23 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
+            .csrf().disable() // api 사용시 필요한 옵션
             .authorizeRequests(auth -> auth
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 .mvcMatchers(
                     HttpMethod.GET,
                     "/"
                 ).permitAll()
+                .mvcMatchers(
+                    HttpMethod.POST,
+                    "/users/signup"
+                ).permitAll()
                 .anyRequest().authenticated()
             )
-            .formLogin().and()
+            .formLogin()
+                .defaultSuccessUrl("/users/login/result")
+                .permitAll()
+            .and()
             .logout()
                 .logoutSuccessUrl("/login")
                 .and()
@@ -44,7 +52,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    public static PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 }
