@@ -29,7 +29,8 @@ public class Users extends BaseEntity {
     @Comment("이메일")
     private String email;
 
-    @OneToMany
+    @OneToMany(mappedBy = "users")
+
     private List<Ledger> ledgers;
 
     public static Users of(String userName, String password, String email){
